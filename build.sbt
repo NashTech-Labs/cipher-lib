@@ -1,5 +1,3 @@
-ThisBuild / version := "0.1.0-SNAPSHOT"
-
 ThisBuild / scalaVersion := "2.13.10"
 
 ThisBuild / organization := "knoldus"
@@ -7,6 +5,7 @@ ThisBuild / organization := "knoldus"
 lazy val root = (project in file("."))
   .settings(
     name := "cipher_lib",
+    version := "1.0",
     libraryDependencies ++= Seq(
       "com.github.sps.junidecode" % "junidecode" % "0.3",
       "org.apache.commons" % "commons-lang3" % "3.12.0",
