@@ -1,5 +1,9 @@
-import io.flow.util.Random
+package com.knoldus.client
 
+import com.knoldus.models._
+import org.apache.commons.lang3.RandomStringUtils
+
+import scala.collection.mutable
 import scala.concurrent.{ExecutionContext, Future}
 
 object Factories {
@@ -8,13 +12,12 @@ object Factories {
     attributes = Map()
   )
 
-  def randomString(length: Int = 24): String = {
+  def randomString(length: Int = 24): String =
     _root_.scala.util.Random.alphanumeric.take(length).mkString
-  }
 }
 
-class FakeCiphers @javax.inject.Inject()() {
-  val ciphers = scala.collection.mutable.Map[String, DecryptedCipherWithPassword]()
+class FakeCiphers() {
+  val ciphers: mutable.Map[String, DecryptedCipherWithPassword] = scala.collection.mutable.Map[String, DecryptedCipherWithPassword]()
 
   def add(cipher: CipherModel, decryptedWithPassword: DecryptedCipherWithPassword): Unit = {
     ciphers += (cipher.id -> decryptedWithPassword)
@@ -25,13 +28,11 @@ class FakeCiphers @javax.inject.Inject()() {
     ciphers(cipherId)
 }
 
-class PaymentInternalClient(fakeCiphers: FakeCiphers) {
-  val random = Random()
-
+class InternalClient(fakeCiphers: FakeCiphers) {
   def post(
-    cipherForm: CipherForm
+      cipherForm: CipherForm
   )(implicit ec: ExecutionContext): Future[CipherModel] = {
-    val cipher = Factories.makeCipher().copy(id = random.alphaNumeric(64))
+    val cipher = Factories.makeCipher().copy(id = RandomStringUtils.randomAlphanumeric(64))
     val decryptedWithPassword = DecryptedCipherWithPassword(
       DecryptedCipher(cipher.id, cipherForm.text, Map.empty),
       cipherForm.password
@@ -41,7 +42,7 @@ class PaymentInternalClient(fakeCiphers: FakeCiphers) {
   }
 
   def postGet(
-    decryptCipherForm: DecryptCipherForm
+      decryptCipherForm: DecryptCipherForm
   )(implicit ec: ExecutionContext): Future[DecryptedCipher] = {
     val decryptedWithPassword = fakeCiphers.get(decryptCipherForm.id)
     Future.successful(decryptedWithPassword.decryptedCipher)
