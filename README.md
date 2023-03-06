@@ -11,21 +11,20 @@ Add the following library dependency in your `build.sbt` file. This will import 
 ```
 resolvers += "google-artifact-registry" at "https://asia-maven.pkg.dev/sonarqube-289802/knoldus-aws-lib/"
 
-libraryDependencies += "knoldus" % "logging_lib_2.13" % "1.0"
+libraryDependencies += "knoldus" % "cipher_lib_2.13" % "1.0"
 ```
 
 ##### Maven
-```
-<dependency>
+```<dependency>
     <groupId>knoldus</groupId>
-    <artifactId>logging_lib_2.13</artifactId>
+    <artifactId>cipher_lib_2.13</artifactId>
     <version>1.0</version>
 </dependency>
 ```
 
 ##### Gradle
 ```
-compile group: 'knoldus', name: 'logging_lib_2.13', version: '1.0'
+compile group: 'knoldus', name: 'cipher_lib_2.13', version: '1.0'
 ```
 
 
@@ -91,11 +90,11 @@ id - icc3AINJrw1GsGyDUioMwLcOEQriZZnMkw1S9DQI2BgxQmyTjuV9SRSm0HZgrJso : cleartex
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
     <groupId>knoldus</groupId>
-    <artifactId>logging_lib_2.13</artifactId>
+    <artifactId>cipher_lib_2.13</artifactId>
     <packaging>jar</packaging>
-    <description>Logging_lib</description>
+    <description>cipher_lib</description>
     <version>1.0</version>
-    <name>Logging_lib</name>
+    <name>cipher_lib</name>
     <organization>
         <name>knoldus</name>
     </organization>
@@ -106,34 +105,20 @@ id - icc3AINJrw1GsGyDUioMwLcOEQriZZnMkw1S9DQI2BgxQmyTjuV9SRSm0HZgrJso : cleartex
             <version>2.13.10</version>
         </dependency>
         <dependency>
-            <groupId>com.rollbar</groupId>
-            <artifactId>rollbar-java</artifactId>
-            <version>1.9.0</version>
+            <groupId>com.github.sps.junidecode</groupId>
+            <artifactId>junidecode</artifactId>
+            <version>0.3</version>
         </dependency>
         <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-            <version>6.3</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
         </dependency>
         <dependency>
-            <groupId>com.typesafe.play</groupId>
-            <artifactId>play-json_2.13</artifactId>
-            <version>2.9.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.36</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.10</version>
-        </dependency>
-        <dependency>
-            <groupId>com.typesafe.scala-logging</groupId>
-            <artifactId>scala-logging_2.13</artifactId>
-            <version>3.9.4</version>
+            <groupId>org.scalatestplus.play</groupId>
+            <artifactId>scalatestplus-play_2.13</artifactId>
+            <version>5.1.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <repositories>
